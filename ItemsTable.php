@@ -51,7 +51,7 @@ $page_title="Available Items";
 <table>
 	<tr>
 		<th width="15%" height="15%">Image</th>
-		<th width="8%">Product ID</th>
+		<!--<th width="8%">Product ID</th>-->
 		<th width="15%">Product Description</th>
 		<th width="10%">Product Price</th>
 		<th width="10%">Added By</th>
@@ -91,7 +91,7 @@ $page_title="Available Items";
 		while ($row=$result->fetch_assoc()) 
 		{
 			echo "<td><img src='Images/".$row['image']."'></td>";
-			echo "<td>".$row["id"]."</td>";
+			//echo "<td>".$row["id"]."</td>";
 			echo "<td>".$row["pname"]."</td>";
 			echo "<td>".$row["price"]."</td>";
 			echo "<td>".$row["person"]."</td>";

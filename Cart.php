@@ -1,4 +1,4 @@
-\<?php
+<?php
     session_start();
     $database_name = "gaming";
     $con = mysqli_connect("localhost","root","",$database_name);
