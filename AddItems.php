@@ -8,10 +8,11 @@ if (isset($_POST['upload']))
 	$image=$_FILES['image']['name'];
 	$pname=mysqli_real_escape_string($db,$_POST['description']);
 	$price=mysqli_real_escape_string($db,$_POST['price']);
+	$person=$_SESSION['admin'];
 
 	$target="Images/".basename($image);
 
-	$sql="INSERT INTO products (pname,image,price) VALUES ('$pname','$image','$price')";
+	$sql="INSERT INTO products (pname,image,price,person) VALUES ('$pname','$image','$price','$person')";
 
 	mysqli_query($db,$sql);
 

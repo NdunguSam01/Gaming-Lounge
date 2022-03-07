@@ -54,7 +54,7 @@ $page_title="Available Items";
 		<th width="8%">Product ID</th>
 		<th width="10%">Product Description</th>
 		<th width="10%">Product Price</th>
-		<!--<th width="10%">Item Added By</th>-->
+		<th width="10%">Added By</th>
 		<th width="10%">Delete Item</th>
 	</tr>
 	<tr>
@@ -94,7 +94,7 @@ $page_title="Available Items";
 			echo "<td>".$row["id"]."</td>";
 			echo "<td>".$row["pname"]."</td>";
 			echo "<td>".$row["price"]."</td>";
-			//echo "<td>".$_SESSION['admin']."</td>";
+			echo "<td>".$row["person"]."</td>";
 			echo "<td><a href=deleteItems.php?id=".$row['id'].">Delete</a></td>";
 			echo "</tr>";
 		}

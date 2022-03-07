@@ -33,7 +33,8 @@
         }
     }
 
-    if (isset($_GET["action"])){
+    if (isset($_GET["action"]))
+    {
         if ($_GET["action"] == "delete"){
             foreach ($_SESSION["cart"] as $keys => $value){
                 if ($value["product_id"] == $_GET["id"]){
@@ -44,6 +45,29 @@
             }
         }
     }
+
+    if (isset($_GET["action"]))
+    {
+        if ($_GET["action"] == "order"){
+            foreach ($_SESSION["cart"] as $keys => $value)
+            {
+                if ($value["product_id"] == $_GET["id"])
+                {
+                    $id=$value['product_id'];
+                    $pname=$value['item_name'];
+                    $quantity=$value['item_quantity'];
+                    $price=$value['total'];
+
+                    $insert="INSERT INTO orders(itemID,pName,quantity,price) VALUES ('$id','$pname','$quantity','$price')";
+                    unset($_SESSION["cart"][$keys]);
+                    //echo '<script>alert("Product has been ordered successfully...!")</script>';
+                    //echo '<script>window.location="Cart.php"</script>';
+                }
+            }
+        }
+    }
+
+   
 ?>
 
 <!doctype html>
@@ -105,13 +129,11 @@
         <div class="table-responsive">
             <table class="table table-bordered">
             <tr>
-		<th width="8%">Item ID</th>
-		<!--<th width="15%">Product Image</th>-->
-                <th width="30%">Product Name</th>
+                <th width="20%">Product Name</th>
                 <th width="10%">Quantity</th>
                 <th width="13%">Price Details</th>
                 <th width="13%">Total Price</th>
-                <th width="17%">Remove Item</th>
+                <th width="20%" colspan="2">Actions</th>
             </tr>
 
             <?php
@@ -120,14 +142,15 @@
                     foreach ($_SESSION["cart"] as $key => $value) {
                         ?>
                         <tr>
-			    <td><?php echo $value["product_id"]; ?></td>
                             <td><?php echo $value["item_name"]; ?></td>
                             <td><?php echo $value["item_quantity"]; ?></td>
                             <td>Kshs <?php echo $value["product_price"]; ?></td>
                             <td>
                                 Kshs <?php echo number_format($value["item_quantity"] * $value["product_price"], 2); ?></td>
+                            <td><a href="Cart.php?action=order&id=<?php echo $value["product_id"]; ?>"><span
+                                        class="btn btn-success">Place Order</span></a> </td>
                             <td><a href="Cart.php?action=delete&id=<?php echo $value["product_id"]; ?>"><span
-                                        class="text-danger">Remove Item</span></a></td>
+                                        class="btn btn-success">Remove</span></a></td>
 
                         </tr>
                         <?php
@@ -135,7 +158,7 @@
                     }
                         ?>
                         <tr>
-                            <td colspan="4" align="right">Total</td>
+                            <td colspan="3" align="right">Total</td>
                             <th align="right">Kshs <?php echo number_format($total, 2); ?></th>
                             <td></td>
                         </tr>
