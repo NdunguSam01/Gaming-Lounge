@@ -14,6 +14,7 @@ if(isset($_SESSION["user"]))
     }
 }
 
+
     if (isset($_POST["add"]))
     {
         if (isset($_SESSION["cart"]))
@@ -84,11 +85,6 @@ if(isset($_SESSION["user"]))
                     $insert="INSERT INTO orders(itemID,pName,quantity,price) VALUES ('$id','$pname','$quantity','$price')";
                     unset($_SESSION["cart"][$keys]);
                     echo '<script>alert("Product has been ordered successfully!")</script>';
-                    echo '<script>window.location="Cart.php"</script>';
-                }
-                else
-                {
-                    echo '<script>alert("Information not saved!")</script>';
                     echo '<script>window.location="Cart.php"</script>';
                 }
             }
