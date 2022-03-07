@@ -1,5 +1,5 @@
 <?php
-    session_start();
+include_once "Sessions.php";
     $database_name = "gaming";
     $con = mysqli_connect("localhost","root","",$database_name);
 
@@ -80,7 +80,7 @@ if(isset($_SESSION["user"]))
                     $id=$value['product_id'];
                     $pname=$value['item_name'];
                     $quantity=$value['item_quantity'];
-                    $price=$_POST['amount'];
+                    $price=$value['amount'];
 
                     $insert="INSERT INTO orders(itemID,pName,quantity,price) VALUES ('$id','$pname','$quantity','$price')";
                     unset($_SESSION["cart"][$keys]);
