@@ -14,10 +14,13 @@ if(isset($_SESSION["user"]))
     }
 }
 
-    if (isset($_POST["add"])){
-        if (isset($_SESSION["cart"])){
+    if (isset($_POST["add"]))
+    {
+        if (isset($_SESSION["cart"]))
+        {
             $item_array_id = array_column($_SESSION["cart"],"product_id");
-            if (!in_array($_GET["id"],$item_array_id)){
+            if (!in_array($_GET["id"],$item_array_id))
+            {
                 $count = count($_SESSION["cart"]);
                 $item_array = array(
             'product_id' => $_GET["id"],
@@ -27,13 +30,18 @@ if(isset($_SESSION["user"]))
                 );
                 $_SESSION["cart"][$count] = $item_array;
                 
-                echo '<script>alert("Product has been added...!")</script>';
+                echo '<script>alert("Product has been added to cart!")</script>';
                 echo '<script>window.location="Cart.php"</script>';
-            }else{
+            }
+
+            else
+            {
                 echo '<script>alert("Product is already Added to Cart")</script>';
                 echo '<script>window.location="Cart.php"</script>';
             }
-        }else{
+        }
+        else
+        {
             $item_array = array(
                 'product_id' => $_GET["id"],
                 'item_name' => $_POST["hidden_name"],
@@ -46,11 +54,14 @@ if(isset($_SESSION["user"]))
 
     if (isset($_GET["action"]))
     {
-        if ($_GET["action"] == "delete"){
-            foreach ($_SESSION["cart"] as $keys => $value){
-                if ($value["product_id"] == $_GET["id"]){
+        if ($_GET["action"] == "delete")
+        {
+            foreach ($_SESSION["cart"] as $keys => $value)
+            {
+                if ($value["product_id"] == $_GET["id"])
+                {
                     unset($_SESSION["cart"][$keys]);
-                    echo '<script>alert("Product has been Removed...!")</script>';
+                    echo '<script>alert("Product has been Removed!")</script>';
                     echo '<script>window.location="Cart.php"</script>';
                 }
             }
@@ -59,7 +70,8 @@ if(isset($_SESSION["user"]))
     
     if (isset($_GET["action"]))
     {
-        if ($_GET["action"] == "order"){
+        if ($_GET["action"] == "order")
+        {
             foreach ($_SESSION["cart"] as $keys => $value)
             {
                 if ($value["product_id"] == $_GET["id"])
@@ -67,16 +79,22 @@ if(isset($_SESSION["user"]))
                     $id=$value['product_id'];
                     $pname=$value['item_name'];
                     $quantity=$value['item_quantity'];
-                    $price=$value['total'];
+                    $price=$_POST['amount'];
 
                     $insert="INSERT INTO orders(itemID,pName,quantity,price) VALUES ('$id','$pname','$quantity','$price')";
                     unset($_SESSION["cart"][$keys]);
-                    echo '<script>alert("Product has been ordered successfully...!")</script>';
+                    echo '<script>alert("Product has been ordered successfully!")</script>';
+                    echo '<script>window.location="Cart.php"</script>';
+                }
+                else
+                {
+                    echo '<script>alert("Information not saved!")</script>';
                     echo '<script>window.location="Cart.php"</script>';
                 }
             }
         }
     }
+   
 
    
 ?>
@@ -165,12 +183,12 @@ if(isset($_SESSION["user"]))
 
                         </tr>
                         <?php
-                        $total = $total + ($value["item_quantity"] * $value["product_price"]);
+                        $amount = $total + ($value["item_quantity"] * $value["product_price"]);
                     }
                         ?>
                         <tr>
                             <td colspan="3" align="right">Total</td>
-                            <th align="right">Kshs <?php echo number_format($total, 2); ?></th>
+                            <th align="right">Kshs <?php echo number_format($amount, 2); ?></th>
                             <td></td>
                         </tr>
                         <?php
