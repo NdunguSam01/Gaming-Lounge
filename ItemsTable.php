@@ -52,7 +52,7 @@ $page_title="Available Items";
 	<tr>
 		<th width="15%" height="15%">Image</th>
 		<th width="8%">Product ID</th>
-		<th width="10%">Product Description</th>
+		<th width="15%">Product Description</th>
 		<th width="10%">Product Price</th>
 		<th width="10%">Added By</th>
 		<th width="10%">Delete Item</th>

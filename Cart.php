@@ -1,4 +1,4 @@
-<?php
+\<?php
     session_start();
     $database_name = "gaming";
     $con = mysqli_connect("localhost","root","",$database_name);
@@ -9,7 +9,7 @@
             if (!in_array($_GET["id"],$item_array_id)){
                 $count = count($_SESSION["cart"]);
                 $item_array = array(
-		    'product_id' => $_GET["id"],
+            'product_id' => $_GET["id"],
                     'item_name' => $_POST["hidden_name"],
                     'product_price' => $_POST["hidden_price"],
                     'item_quantity' => $_POST["quantity"],
@@ -45,7 +45,7 @@
             }
         }
     }
-
+    
     if (isset($_GET["action"]))
     {
         if ($_GET["action"] == "order"){
@@ -60,8 +60,8 @@
 
                     $insert="INSERT INTO orders(itemID,pName,quantity,price) VALUES ('$id','$pname','$quantity','$price')";
                     unset($_SESSION["cart"][$keys]);
-                    //echo '<script>alert("Product has been ordered successfully...!")</script>';
-                    //echo '<script>window.location="Cart.php"</script>';
+                    echo '<script>alert("Product has been ordered successfully...!")</script>';
+                    echo '<script>window.location="Cart.php"</script>';
                 }
             }
         }
