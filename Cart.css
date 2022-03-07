@@ -1,0 +1,85 @@
+       @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+
+        *{
+            font-family: 'Titillium Web', sans-serif;
+        }
+        .nav{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color:#333;
+}
+
+.logo {
+  border-radius: 50%;
+  float:left;
+}
+
+.header {
+  position: relative;
+  max-width: 1500px; /* Maximum width */
+  margin: 0 auto; /* Center it */
+  background-attachment: fixed;
+  background-size: cover;
+ background-repeat: no-repeat;
+}
+
+
+.navbar
+{
+  padding-left: 900px;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navbar a 
+{
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.navbar a:hover
+{
+  background-color: red;
+}
+h1
+{
+  color: white;
+}
+p
+{
+padding-left:500px ;
+font-size: 23;
+color: white;
+}
+
+        .product{
+            border: 1px solid #eaeaec;
+            margin: -1px 19px 3px -1px;
+            padding: 10px;
+            text-align: center;
+            background-color: #efefef;
+        }
+        table, th, tr,td{
+            text-align: center;
+            background-color: white;
+        }
+        .title2{
+            text-align: center;
+            color: #66afe9;
+            background-color: #efefef;
+            padding: 2%;
+        }
+        h2{
+            text-align: center;
+            color: #66afe9;
+            background-color: #efefef;
+            padding: 2%;
+        }
+        table th{
+            background-color:white;
+        }
