@@ -1,6 +1,17 @@
 <?php 
 include_once("AdminSession.php");
 
+if(isset($_SESSION["admin"]))
+{
+    if(time()-$_SESSION["login_time_stamp"] >600) 
+    {
+    	echo '<script>alert("Session expired. Please log in again")</script>';
+        session_unset();
+        session_destroy();
+        header("Location:AdminLogin.php");
+    }
+}
+
 $page_title="Users Information";
  ?>
 <html>

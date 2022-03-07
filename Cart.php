@@ -3,6 +3,17 @@
     $database_name = "gaming";
     $con = mysqli_connect("localhost","root","",$database_name);
 
+if(isset($_SESSION["user"]))
+{
+    if(time()-$_SESSION["login_time_stamp"] >600) 
+    {
+        echo '<script>alert("Session expired. Please log in again")</script>';
+        session_unset();
+        session_destroy();
+        header("Location:UserLogin.php");
+    }
+}
+
     if (isset($_POST["add"])){
         if (isset($_SESSION["cart"])){
             $item_array_id = array_column($_SESSION["cart"],"product_id");

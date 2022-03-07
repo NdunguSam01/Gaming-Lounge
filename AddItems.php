@@ -3,6 +3,17 @@ include_once("AdminSession.php");
 $db=mysqli_connect("localhost","root","","gaming");
 $msg="";
 
+if(isset($_SESSION["admin"]))
+{
+    if(time()-$_SESSION["login_time_stamp"] >600) 
+    {
+    	echo '<script>alert("Session expired. Please log in again")</script>';
+        session_unset();
+        session_destroy();
+        header("Location:AdminLogin.php");
+    }
+}
+
 if (isset($_POST['upload'])) 
 {
 	$image=$_FILES['image']['name'];
