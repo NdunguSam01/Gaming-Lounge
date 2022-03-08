@@ -56,9 +56,8 @@ padding-left:500px ;
 font-size: 23;
 color: white;
 }
-
-        .product{
-            border: 1px solid #eaeaec;
+.product{
+    border: 1px solid #eaeaec;
             margin: -1px 19px 3px -1px;
             padding: 10px;
             text-align: center;

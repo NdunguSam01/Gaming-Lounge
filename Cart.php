@@ -133,14 +133,14 @@ if(isset($_SESSION["user"]))
                         <form method="post" action="Cart.php?action=add&id=<?php echo $row["id"]; ?>">
 
                             <div class="product">
-                                <img src="<?php echo $row["image"]; ?>" class="img-responsive">
+                                <img src="Images/<?php echo $row["image"]; ?>" class="img-responsive">
                                 <h5 class="text-info">Product Name:<?php echo $row["pname"]; ?></h5>
                                 <h5 class="text-danger">Price:Kshs<?php echo $row["price"]; ?></h5>
                                 <input type="text" name="quantity" class="form-control" value="1">
                                 <input type="hidden" name="hidden_name" value="<?php echo $row["pname"]; ?>">
                                 <input type="hidden" name="hidden_price" value="<?php echo $row["price"]; ?>">
                                 <input type="submit" name="add" style="margin-top: 5px;" class="btn btn-success"
-                                       value="Add to Cart">
+                                       value="Add to Cart" onclick="return confirm('Add item to cart?')">
                             </div>
                         </form>
                     </div>
@@ -174,7 +174,7 @@ if(isset($_SESSION["user"]))
                                 Kshs <?php echo number_format($value["item_quantity"] * $value["product_price"], 2); ?></td>
                             <td><a href="Cart.php?action=order&id=<?php echo $value["product_id"]; ?>"><span
                                         class="btn btn-success">Place Order</span></a> </td>
-                            <td><a href="Cart.php?action=delete&id=<?php echo $value["product_id"]; ?>"><span
+                            <td><a href="Cart.php?action=delete&id=<?php echo $value["product_id"]; ?>" onclick="return confirm('Are you sure you want to remove item?');"><span
                                         class="btn btn-success">Remove</span></a></td>
 
                         </tr>
