@@ -1,6 +1,6 @@
 <?php
-include_once "Sessions.php";
-    $database_name = "gaming";
+//include_once "Sessions.php";
+    $database_name = "ecommerce";
     $con = mysqli_connect("localhost","root","",$database_name);
 
 if(isset($_SESSION["user"]))
@@ -20,11 +20,11 @@ if(isset($_SESSION["user"]))
         if (isset($_SESSION["cart"]))
         {
             $item_array_id = array_column($_SESSION["cart"],"product_id");
-            if (!in_array($_GET["id"],$item_array_id))
+            if (!in_array($_GET["pid"],$item_array_id))
             {
                 $count = count($_SESSION["cart"]);
                 $item_array = array(
-            'product_id' => $_GET["id"],
+            'product_id' => $_GET["pid"],
                     'item_name' => $_POST["hidden_name"],
                     'product_price' => $_POST["hidden_price"],
                     'item_quantity' => $_POST["quantity"],
@@ -44,7 +44,7 @@ if(isset($_SESSION["user"]))
         else
         {
             $item_array = array(
-                'product_id' => $_GET["id"],
+                'product_id' => $_GET["pid"],
                 'item_name' => $_POST["hidden_name"],
                 'product_price' => $_POST["hidden_price"],
                 'item_quantity' => $_POST["quantity"],
@@ -59,7 +59,7 @@ if(isset($_SESSION["user"]))
         {
             foreach ($_SESSION["cart"] as $keys => $value)
             {
-                if ($value["product_id"] == $_GET["id"])
+                if ($value["product_id"] == $_GET["pid"])
                 {
                     unset($_SESSION["cart"][$keys]);
                     echo '<script>alert("Product has been Removed!")</script>';
@@ -75,7 +75,7 @@ if(isset($_SESSION["user"]))
         {
             foreach ($_SESSION["cart"] as $keys => $value)
             {
-                if ($value["product_id"] == $_GET["id"])
+                if ($value["product_id"] == $_GET["pid"])
                 {
                     $id=$value['product_id'];
                     $pname=$value['item_name'];
@@ -121,7 +121,7 @@ if(isset($_SESSION["user"]))
     <div class="container" style="width: 65%">
         <h2>Shopping Cart</h2>
         <?php
-            $query = "SELECT * FROM products ORDER BY id ASC ";
+            $query = "SELECT * FROM products ORDER BY pid ASC ";
             $result = mysqli_query($con,$query);
             if(mysqli_num_rows($result) > 0) {
 
@@ -130,14 +130,14 @@ if(isset($_SESSION["user"]))
                     ?>
                     <div class="col-md-3">
 
-                        <form method="post" action="Cart.php?action=add&id=<?php echo $row["id"]; ?>">
+                        <form method="post" action="Cart.php?action=add&pid=<?php echo $row["pid"]; ?>">
 
                             <div class="product">
                                 <img src="Images/<?php echo $row["image"]; ?>" class="img-responsive">
-                                <h5 class="text-info">Product Name:<?php echo $row["pname"]; ?></h5>
+                                <h5 class="text-info">Product Name:<?php echo $row["description"]; ?></h5>
                                 <h5 class="text-danger">Price:Kshs<?php echo $row["price"]; ?></h5>
                                 <input type="text" name="quantity" class="form-control" value="1">
-                                <input type="hidden" name="hidden_name" value="<?php echo $row["pname"]; ?>">
+                                <input type="hidden" name="hidden_name" value="<?php echo $row["description"]; ?>">
                                 <input type="hidden" name="hidden_price" value="<?php echo $row["price"]; ?>">
                                 <input type="submit" name="add" style="margin-top: 5px;" class="btn btn-success"
                                        value="Add to Cart" onclick="return confirm('Add item to cart?')">
@@ -172,9 +172,9 @@ if(isset($_SESSION["user"]))
                             <td>Kshs <?php echo $value["product_price"]; ?></td>
                             <td>
                                 Kshs <?php echo number_format($value["item_quantity"] * $value["product_price"], 2); ?></td>
-                            <td><a href="Cart.php?action=order&id=<?php echo $value["product_id"]; ?>"><span
+                            <td><a href="Cart.php?action=order&pid=<?php echo $value["product_id"]; ?>"><span
                                         class="btn btn-success">Place Order</span></a> </td>
-                            <td><a href="Cart.php?action=delete&id=<?php echo $value["product_id"]; ?>" onclick="return confirm('Are you sure you want to remove item?');"><span
+                            <td><a href="Cart.php?action=delete&pid=<?php echo $value["product_id"]; ?>" onclick="return confirm('Are you sure you want to remove item?');"><span
                                         class="btn btn-success">Remove</span></a></td>
 
                         </tr>
