@@ -1,6 +1,6 @@
 <?php
-include_once("Sessions.php");
-$name=$_SESSION['user'];
+//include_once("Sessions.php");
+//$name=$_SESSION['user'];
 
 if(isset($_SESSION["user"]))
 {

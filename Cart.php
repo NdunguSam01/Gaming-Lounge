@@ -133,7 +133,7 @@ if(isset($_SESSION["user"]))
                         <form method="post" action="Cart.php?action=add&pid=<?php echo $row["pid"]; ?>">
 
                             <div class="product">
-                                <img src="Images/<?php echo $row["image"]; ?>" class="img-responsive">
+                                <center><img src="../Ecommerce/Uploads/<?php echo $row["image"]; ?>" class="img-responsive"></center>
                                 <h5 class="text-info">Product Name:<?php echo $row["description"]; ?></h5>
                                 <h5 class="text-danger">Price:Kshs<?php echo $row["price"]; ?></h5>
                                 <input type="text" name="quantity" class="form-control" value="1">
