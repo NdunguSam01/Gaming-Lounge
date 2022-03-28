@@ -1,5 +1,6 @@
 <?php
 //include_once "Sessions.php";
+session_start();
     $database_name = "ecommerce";
     $con = mysqli_connect("localhost","root","",$database_name);
 
@@ -179,12 +180,12 @@ if(isset($_SESSION["user"]))
 
                         </tr>
                         <?php
-                        $amount = $total + ($value["item_quantity"] * $value["product_price"]);
+                        $total = $total + ($value["item_quantity"] * $value["product_price"]);
                     }
                         ?>
                         <tr>
                             <td colspan="3" align="right">Total</td>
-                            <th align="right">Kshs <?php echo number_format($amount, 2); ?></th>
+                            <th align="right">Kshs <?php echo number_format($total, 2); ?></th>
                             <td></td>
                         </tr>
                         <?php
